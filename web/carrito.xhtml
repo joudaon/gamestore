@@ -1,0 +1,155 @@
+<!--
+Autor: Jon Udaondo
+-->
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Game Store</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+		<link rel="stylesheet" href="css/responsiveslides.css"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="js/responsiveslides.min.js"></script>
+                <script src="js/zoom.js"></script>
+                <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'></script>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		  <script>
+		    // You can also use "$(window).load(function() {"
+			    $(function () {
+			
+			      // Slideshow 1
+			      $("#slider1").responsiveSlides({
+			        maxwidth: 1600,
+			        speed: 600
+			      });
+			});
+		  </script>
+	</h:head>
+	<h:body>
+		<!--start-wrap-->
+		<div class="wrap">
+			<!--start-header-->
+			<div class="header">
+			<!--start-top-header-->
+			<div class="top-header">
+				<div class="top-header-right">
+					<ul>
+                                            <p:clock pattern="HH:mm:ss" mode="server" />
+					</ul>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<div class="clear"> </div>
+			<div class="sub-header">
+				<div class="logo">
+					<a href="index.xhtml"><img src="resources/tituloo.png" title="logo" /></a>
+				</div>
+				<div class="sub-header-center">
+                                    <form>
+					<input type="text"/>
+                                        <input type="submit"  value="search" />
+                                    </form>
+				</div>
+				<div class="sub-header-right">
+					 <h:form>
+					<ul> 
+                                           <!--TODOOOOO arreglar el "no"-->
+                                           <li><FONT size="5" color="white"> Hola, </FONT></li>
+                                           <li> <FONT size="5" color="white"> <h:outputLabel for="contact_name" value="#{usuarioBean.userUsernameInserted}" /> </FONT> </li>
+                                           <p:button value="Cerrar Sesión" href="/login.xhtml" />
+                                           <li><a href="carrito.xhtml">CART: <h:outputText id="output" value="#{videojuegoBean.contador}" /> <img src="resources/design/cart.png" title="cart" /></a></li>
+					</ul>
+                                    </h:form>
+				</div>
+				<div class="clear" > </div>
+			</div>
+                        </div>
+                        			<div class="top-nav">
+				<ul>
+					<li><a href="index.xhtml">Home</a></li>
+					<li><a href="contact.xhtml">Contact us</a></li>
+					<div class="clear"> </div>
+				</ul>			</div>
+                </div>
+                <div class="content" style="background-color:#EEEEEE">
+                    <h:form>
+                        <p:panel header="Mi pedido" style="text-align: center;">
+                            <p:dataTable var="listavideojuego" id="tableId" value="#{videojuegoBean.ue.listavideojuegos}">
+                                <p:column headerText="Juego">
+                                    <f:facet name="header">Nombre videojuego</f:facet>
+                                    <h:outputText value="#{listavideojuego.nombre}" />
+                                </p:column>
+                                <p:column headerText="Plataforma">
+                                    <f:facet name="header">Plataforma</f:facet>
+                                    <h:outputText value="#{listavideojuego.plataforma}" />
+                                </p:column>
+                                <p:column headerText="Precio">
+                                    <f:facet name="header">Precio</f:facet>
+                                    <h:outputText value="#{listavideojuego.precio}€" />
+                                </p:column>
+                                <p:columnGroup type="footer">
+                                    <f:facet name="header">Total</f:facet>
+                                    <p:row>
+                                        <p:column colspan="2" footerText="Total" style="text-align: center"  />
+                                        <p:column footerText="#{videojuegoBean.preciototal}€" style="text-align: center"/>
+                                    </p:row>
+                                </p:columnGroup>
+                            </p:dataTable>    
+                        </p:panel>
+                        <div>
+                            <p:toolbar>
+                                <p:toolbarGroup align="left">
+                                    <h3>Export as: </h3>
+                                    <h:commandLink>
+                                        <img src="resources/pdf.png"/>
+                                        <p:dataExporter type="pdf" target="tableId" fileName="Mi pedido"/>
+                                    </h:commandLink>
+                                    <h:commandLink>
+                                        <img src="resources/xml.png"/>
+                                        <p:dataExporter type="xml" target="tableId" fileName="Mi pedido"/>
+                                    </h:commandLink>
+                                    <h:commandLink>
+                                        <img src="resources/xls.png"/>
+                                        <p:dataExporter type="xls" target="tableId" fileName="Mi pedido"/>
+                                    </h:commandLink>
+                                </p:toolbarGroup>
+                                <p:toolbarGroup align="right">
+                                    <h:form>
+                                        <p:growl id="growl" showDetail="true" sticky="true"/>
+                                        <p:commandButton value="Comprar" action='#{videojuegoBean.comprayvaciolista(usuarioBean.userUsernameInserted)}' update="growl" />
+                                        <p:button value="Volver" href="index.xhtml"/>
+                                    </h:form>
+                                </p:toolbarGroup> 
+                            </p:toolbar>      
+                        </div>
+                    </h:form>
+                </div>
+                <div class="clear"> </div>
+                <div class="footer">
+                    <div class="wrap">
+                        <div class="section group">
+                            <div class="col_1_of_4 span_1_of_4 footer-lastgrid">
+                                <h3>Follow us on</h3>
+                                <ul>
+                                    <li><a href="https://www.facebook.com/jon.uda.7"><img src="resources/design/facebook.png" title="Sigueme en Facebook" /></a></li>
+                                    <li><a href="https://twitter.com/Jon_Uda"><img src="resources/design/twitter.png" title="Suigeme en Twitter" /></a></li>
+                                </ul>
+                                <p>Design by <a href="#">Jon Udaondo</a></p>
+                            </div>
+                            <div class="col_1_of_4 span_1_of_4 footer-lastgrid">
+                                <h3>Comparte</h3>
+                                <div><a name="fb_share" type="button_count" href="http://google.es" rel="nofollow">Share</a></div>
+                                <div>  _ </div>
+                                <div><a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></div>
+                            </div>
+			</div>
+                    </div>
+                </div>
+		<!--End-wrap-->
+        </h:body>
+</html>

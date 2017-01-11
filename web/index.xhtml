@@ -1,0 +1,152 @@
+<!--
+Autor: Jon Udaondo
+-->
+<!DOCTYPE HTML>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Game Store</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+		<link rel="stylesheet" href="css/responsiveslides.css"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="js/responsiveslides.min.js"></script>
+		  <script>
+		    // You can also use "$(window).load(function() {"
+			    $(function () {
+			
+			      // Slideshow 1
+			      $("#slider1").responsiveSlides({
+			        maxwidth: 1600,
+			        speed: 600
+			      });
+			});
+		  </script>
+                  <script type="text/javascript">
+    	$(function(){
+    		$('legend').click(function(){
+    			$(this).parent().find('.content').slideToggle("slow");
+    		});
+    	});
+</script>
+        </h:head>
+	<h:body>
+
+		<!--start-wrap-->
+		<div class="wrap">
+			<!--start-header-->
+			<div class="header">
+			<!--start-top-header-->
+			<div class="top-header">
+				<div class="top-header-right">
+					<ul>
+                                            <p:clock pattern="HH:mm:ss" mode="server" />
+					</ul>
+				</div>
+				<div class="clear"> </div>
+			</div>
+                        </div>
+			<div class="clear"> </div>
+			<div class="sub-header">
+				<div class="logo">
+					<a href="index.xhtml"><img src="resources/tituloo.png" title="logo" /></a>
+				</div>
+				<div class="sub-header-center">
+					<form>
+						<input type="text"/><input type="submit"  value="search" />
+					</form>
+				</div>
+				<div class="sub-header-right">
+                                    <h:form>
+					<ul> 
+                                           <!--TODOOOOO arreglar el "no"-->
+                                            <li><FONT size="5" color="white"> Hola, </FONT></li>
+                                            <li> <FONT size="5" color="white"> <h:outputLabel for="contact_name" value="#{usuarioBean.userUsernameInserted}" /> </FONT> </li>
+                                            <p:button value="Cerrar Sesión" href="/login.xhtml" />
+                                            <li><a href="carrito.xhtml">CART: <h:outputText id="output" value="#{videojuegoBean.contador}" /> <img src="resources/design/cart.png" title="cart" /></a></li>
+					</ul>
+                                    </h:form>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<div class="clear"> </div>
+                        <div class="top-nav">
+				<ul>
+					<li class="active1"><a href="index.xhtml">Home</a></li>
+					<li><a href="contact.xhtml">Contact us</a></li>
+					<div class="clear"> </div>
+				</ul>
+			</div>
+			<!--end-top-header-->
+			<!--End-header-->
+			</div>
+                            <!--start-image-slider-->
+					<div class="image-slider">
+						<!-- Slideshow 1 -->
+					    <ul class="rslides" id="slider1">
+					      <li><img src="resources/design/slider1.jpg" alt=""/></li>
+					      <li><img src="resources/design/slider2.jpg" alt=""/></li>
+					      <li><img src="resources/design/slider3.png" alt=""/></li>
+					    </ul>
+						 <!-- Slideshow 2 -->
+					</div>
+					<!--End-image-slider-->
+				<div class="content">
+					<div class="products-box">
+					
+                                            <div class="products">
+                                           <!--Toogle-->  
+                                            <fieldset>
+                                                <legend><h5><span>Videojuegos  </span>disponibles</h5></legend>
+                                                <!--<h5><span>Play Station </span>3</h5>-->
+                                                <div class="content">
+						<div class="section group">
+                                                    
+                                                    <ui:repeat var="game" value="#{videojuegoBean.listavideojuegos}" varStatus="nombre">
+							<div class="grid_1_of_5 resources images_1_of_5">
+                                                            <img src="#{game.urlfoto}"/>
+                                                            <h3>#{game.nombre}</h3>
+                                                            <p>#{game.descripcion} </p>
+                                                            <h4>#{game.precio}€</h4>
+                                                            <h:form>
+                                                                <p:commandButton value="Detalles" action='#{videojuegoBean.cargarDetallesVideojuegos(game.nombre)}'/>
+                                                            </h:form>
+                                                        </div>
+                                                    </ui:repeat>
+							
+                                                </div>
+                                       
+                                                </div>
+                                            </fieldset>
+			</div>
+                                        </div>
+                                </div>
+			<div class="clear"> </div>
+			<div class="footer">
+				<div class="wrap">
+				<div class="section group">
+				<div class="col_1_of_4 span_1_of_4 footer-lastgrid">
+					<h3>Follow us on</h3>
+					<ul>
+                                            <li><a href="https://www.facebook.com/jon.uda.7"><img src="resources/design/facebook.png" title="Sigueme en Facebook" /></a></li>
+                                            <li><a href="https://twitter.com/Jon_Uda"><img src="resources/design/twitter.png" title="Suigeme en Twitter" /></a></li>
+                                        </ul>
+					<p>Design by <a href="#">Jon Udaondo</a></p>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!--End-wrap-->
+	</h:body>
+</html>
+
+<!--					<%
+					String url = "otrapagina.jsp?nombrePeli=" + request.getParameter("apellido1") + "&campo2=" + javabean1.;
+					%>
+					<a href="<%=url%>">+</a>-->

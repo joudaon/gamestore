@@ -1,0 +1,183 @@
+<!--
+Autor: Jon Udaondo
+-->
+<!DOCTYPE HTML>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Game Store</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+		<link rel="stylesheet" href="css/responsiveslides.css"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="js/responsiveslides.min.js"></script>
+                <script src="http://maps.google.com/maps/api/js?sensor=truel false" type ="text/javascript"></script>
+		  <script>
+		    // You can also use "$(window).load(function() {"
+			    $(function () {
+			
+			      // Slideshow 1
+			      $("#slider1").responsiveSlides({
+			        maxwidth: 1600,
+			        speed: 600
+			      });
+			});
+		  </script>
+    <style type="text/css">
+    .zoom{
+        /* Aumentamos la anchura y altura durante 2 segundos */
+        transition: width 2s, height 2s, transform 2s;
+        -moz-transition: width 2s, height 2s, -moz-transform 2s;
+        -webkit-transition: width 2s, height 2s, -webkit-transform 2s;
+        -o-transition: width 2s, height 2s,-o-transform 2s;       
+    }
+    .zoom:hover{
+        /* tranformamos el elemento al pasar el mouse por encima al doble de
+           su tamaño con scale(2). */
+        transform : scale(2);
+        -moz-transform : scale(2);      /* Firefox */
+        -webkit-transform : scale(2);   /* Chrome - Safari */
+        -o-transform : scale(2);        /* Opera */
+    }
+    </style>
+        </h:head>
+	<h:body>
+<!--<div style='text-align:center;'>
+    <div class="zoom">Efecto de zoom con CSS3</div>
+    <img class="zoom" src="resources/images_prueba/nature1.jpg" />
+</div>-->
+		<!--start-wrap-->
+		<div class="wrap">
+			<!--start-header-->
+			<div class="header">
+			<!--start-top-header-->
+			<div class="top-header">
+				<div class="top-header-right">
+					<ul>
+                                            <p:clock pattern="HH:mm:ss" mode="server" />
+					</ul>
+				</div>
+				<div class="clear"> </div>
+			</div>
+                        </div>
+			<div class="clear"> </div>
+			<div class="sub-header">
+				<div class="logo">
+					<a href="singlegame.xhtml"><img src="resources/tituloo.png" title="logo" /></a>
+				</div>
+				<div class="sub-header-center">
+					<form>
+						<input type="text"/><input type="submit"  value="search" />
+					</form>
+				</div>
+				<div class="sub-header-right">
+                                    <h:form>
+					<ul> 
+                                           <!--TODOOOOO arreglar el "no"-->
+                                            <li><FONT size="5" color="white"> Hola, </FONT></li>
+                                            <li><FONT size="5" color="white"> <h:outputLabel for="contact_name" value="#{usuarioBean.userUsernameInserted}" /> </FONT> </li>
+                                            <p:button value="Cerrar Sesión" href="/login.xhtml" />
+                                            <li><a href="carrito.xhtml">CART: <h:outputText id="output" value="#{videojuegoBean.contador}" /> <img src="resources/design/cart.png" title="cart" /></a></li>
+					</ul>
+                                    </h:form>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<div class="clear"> </div>
+			<div class="top-nav">
+				<ul>
+					<li><a href="index.xhtml">Home</a></li>
+					<li  class="active1"><a href="contact.xhtml">Contact us</a></li>
+					<div class="clear"> </div>
+				</ul>			</div>
+			<!--end-top-header-->
+			<!--End-header-->
+			</div>
+			<div class="content">
+			    <div class="contact">
+			        <div class="section group">				
+				    <div class="col span_1_of_3">
+					<div class="contact_info">
+			    	 	<h3>Encuentranos aquí</h3>
+			    	 	    <div class="map">
+                                                <h:form>
+                                                    <p:gmap center="43.271247, -2.93880" zoom="16" type="HYBRID" style="width:400px;height:400px" model="#{mapBean.model}" widgetVar="M1" streetView="true" />
+                                                </h:form>
+                                            </div>
+                                        </div>
+                                        <div class="company_address">
+                                            <h3> Información de la compañia:</h3>
+					    <p>Gamestore</p>
+					    <p>Bilbao, Bizkaia</p>
+					    <p>España</p>
+		   		        </div>
+                                        <div class="video">
+                                            <h3 style="margin-top:0">¿¿PS3 vs Wii vs XBOX 360??</h3>
+                                            <p:media value="https://www.youtube.com/watch?v=SfYX286ZrL0" width="400" height="400" player="windows"/>
+                                        </div>
+                                        <div>
+                                            <h:form>
+                                                <p:commandButton id="downloadLink" value="Condiciones y términos" ajax="false" actionListener="#{fileDownloadView.prepDownload}">
+                                                  <p:fileDownload value="#{fileDownloadView.download}" />
+                                              </p:commandButton>
+                                            </h:form>
+                                        </div>
+                                    </div>				
+                                    <div class="col span_2_of_3">
+                                        <div class="contact-form">
+                                            <h3>Contacta con nosotros</h3>
+                                            <form action="sendformmail.php" method="POST" >
+					    <div>
+					        <span><label>Nombre</label></span>
+						<span><input name="nombre" type="text" value=""/></span>
+					    </div>
+                                            <div>
+                                                <span><label>E-mail</label></span>
+					        <span><input name="email" type="text" value=""/></span>
+					    </div>
+					    <div>
+					        <span><label>Móvil</label></span>
+						<span><input name="movil" type="text" value=""/></span>
+					    </div>
+					    <div>
+					        <span><label>Asunto</label></span>
+						<span><textarea name="asunto"> </textarea></span>
+					    </div>
+					    <div>
+					        <span><input type="submit" value="Enviar"/></span>
+					    </div>
+					    </form>
+                                        </div>
+                                    </div>
+                                    <div style='text-align:center;'>
+                                        <li><FONT size="5"> Creador: </FONT></li>
+                                        <img class="zoom" src="resources/udaorla.png" />
+                                    </div>
+                                </div>
+                            </div>
+			</div>
+		
+			<div class="clear"> </div>
+			<div class="footer">
+				<div class="wrap">
+				<div class="section group">
+				<div class="col_1_of_4 span_1_of_4 footer-lastgrid">
+					<h3>Follow us on</h3>
+					<ul>
+						<li><a href="https://www.facebook.com/jon.uda.7"><img src="resources/design/facebook.png" title="Sigueme en Facebook" /></a></li>
+						<li><a href="https://twitter.com/Jon_Uda"><img src="resources/design/twitter.png" title="Suigeme en Twitter" /></a></li>
+
+					</ul>
+					<p>Design by <a href="#">Jon Udaondo</a></p>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!--End-wrap-->
+	</h:body>
+</html>
+

@@ -1,0 +1,6 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Subiendo la aplicaci\IeC {\'o}n a AWS}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Creando una m\IeC {\'a}quina virtual en EC2}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Configurando la m\IeC {\'a}quina virtual}{6}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Trabajando con Putty}{7}{subsubsection.1.2.1}
+\contentsline {subsection}{\numberline {1.3}Desplegando la aplicaci\IeC {\'o}n}{7}{subsection.1.3}
