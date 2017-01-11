@@ -1,0 +1,140 @@
+<!--
+Autor: Jon Udaondo
+-->
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	<h:head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Game Store</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+		<link rel="stylesheet" href="css/responsiveslides.css"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="js/responsiveslides.min.js"></script>
+                <script src="js/zoom.js"></script>
+		  <script>
+		    // You can also use "$(window).load(function() {"
+			    $(function () {
+			
+			      // Slideshow 1
+			      $("#slider1").responsiveSlides({
+			        maxwidth: 1600,
+			        speed: 600
+			      });
+			});
+		  </script>
+	</h:head>
+	<h:body>
+		<!--start-wrap-->
+		<div class="wrap">
+			<!--start-header-->
+			<div class="header">
+			<!--start-top-header-->
+			<div class="top-header">
+				<div class="top-header-right">
+					<ul>
+                                            <p:clock pattern="HH:mm:ss" mode="server" />
+					</ul>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<div class="clear"> </div>
+			<div class="sub-header">
+				<div class="logo">
+					<a href="index.xhtml"><img src="resources/tituloo.png" title="logo" /></a>
+				</div>
+				<div class="sub-header-center">
+                                    <form>
+					<input type="text"/>
+                                        <input type="submit"  value="search" />
+                                    </form>
+				</div>
+
+                               
+				<div class="sub-header-right">
+                                    <h:form>
+					<ul> 
+                                            <!--TODOOOOO arreglar el "no"-->
+                                            <li><FONT size="5" color="white"> Hola, </FONT></li>
+                                            <li> <FONT size="5" color="white"> <h:outputLabel for="contact_name" value="#{usuarioBean.userUsernameInserted}" /> </FONT> </li>
+                                            <p:button value="Cerrar Sesión" href="/login.xhtml" />
+                                            <h:form>
+                                                <li><a href="carrito.xhtml">CART: <h:outputText id="output" value="#{videojuegoBean.contador}" /> <img src="resources/design/cart.png" title="cart" /></a></li>
+                                            </h:form>
+					</ul>
+                                    </h:form>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<div class="clear"> </div>
+			<div class="top-nav">
+				<ul>
+					<li><a href="index.xhtml">Home</a></li>
+					<li><a href="contact.xhtml">Contact us</a></li>
+					<div class="clear"> </div>
+				</ul>
+			</div>
+			<!--end-top-header-->
+			<!--End-header-->
+			</div>
+				<div class="content">
+					<div class="single-page"><br />
+						<div class="clear"> </div>
+						<div class="product-info">
+							<div class="product-image">
+                                                            <img src="#{videojuegoBean.ve.urlfoto}"/> 
+                                                            <p:media value="#{videojuegoBean.ve.urlvideo}" width="300" height="300" player="windows"/>
+                                                        </div>
+                                                        <div class="product-price-info">
+                                                            <h4><FONT size="5"><h:outputLabel for="contact_name" value="#{videojuegoBean.ve.nombre}"/></FONT></h4>
+
+								<div class="product-shipping">
+                                                                    <span>Precio: #{videojuegoBean.ve.precio}€</span>
+                                                                    <div class="clear"> </div>
+								</div>
+								<div class="product-payments">
+                                                                    <span>Género: #{videojuegoBean.ve.estilo}</span>
+                                                                    <div class="clear"> </div>
+								</div>
+                                                                <div class="product-payments">
+                                                                    <span>Plataforma: #{videojuegoBean.ve.plataforma}</span>
+                                                                    <div class="clear"> </div>
+								</div>
+								<div class="product-description">
+									<h3>Descripción : </h3>
+                                                                        <p>#{videojuegoBean.ve.descripcion}</p>
+									<h:form>
+                                                                            <p:growl id="growl" showDetail="true" sticky="false" />
+                                                                            <p:commandButton value="Añadir al carrito" action='#{videojuegoBean.añadiralcarrito(usuarioBean.userUsernameInserted,videojuegoBean.ve.nombre)}' update="growl"/>
+                                                                            <p:button value="Volver" href="/index.xhtml"/>
+                                                                        </h:form>
+								</div>
+                                                        </div>
+							<div class="clear"> </div>
+						</div>
+					</div>
+			</div>
+			<div class="clear"> </div>
+		</div>
+			<div class="footer">
+				<div class="wrap">
+				<div class="section group">
+				<div class="col_1_of_4 span_1_of_4 footer-lastgrid">
+					<h3>Follow us on</h3>
+					<ul>
+                                            <li><a href="https://www.facebook.com/jon.uda.7"><img src="resources/design/facebook.png" title="Sigueme en Facebook" /></a></li>
+                                            <li><a href="https://twitter.com/Jon_Uda"><img src="resources/design/twitter.png" title="Suigeme en Twitter" /></a></li>
+                                        </ul>
+					<p>Design by <a href="#">Jon Udaondo</a></p>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!--End-wrap-->
+	</h:body>
+</html>
+
